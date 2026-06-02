@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Violetas – Estética & Spa | Salta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FDFCF8;--beige:#F6F0E8;--rose:#F5E8E4;
+  --teal:#4FBDB3;--teal-d:#3A9A92;--teal-l:#A8DDD9;--teal-pale:#E8F7F6;
+  --gold:#C8A26A;--gold-d:#A8824A;--gold-pale:#F7EDDA;
+  --violet:#7B30A8;--violet-l:#C090D8;
+  --ink:#2C2025;--mid:#7A7080;--light:#C8C0C8;--white:#FFF;
+  --font-b:'Great Vibes',cursive;
+  --font-h:'Cormorant Garamond',serif;
+  --font-s:'Jost',sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-s);background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:none}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── CURSOR ── */
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--teal);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s}
+#cur-r{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9000;transition:opacity .7s,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+.l-brand{font-family:var(--font-b);font-size:4.5rem;color:var(--ink);opacity:0;animation:fadeIn .9s var(--ease) .3s forwards}
+.l-line{width:140px;height:1px;background:rgba(0,0,0,.1);overflow:hidden;margin-top:1.2rem}
+.l-prog{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;animation:loadProg 1.6s var(--ease) .5s forwards}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes loadProg{to{width:100%}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.3rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,padding .4s}
+nav.solid{background:rgba(253,252,248,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.06);padding:.9rem 4rem}
+.nav-brand{display:flex;align-items:center;gap:.7rem;font-family:var(--font-b);font-size:2rem;color:var(--white);transition:color .4s}
+nav.solid .nav-brand{color:var(--ink)}
+.nav-logo-img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(200,162,106,.6);box-shadow:0 0 10px rgba(200,162,106,.25);transition:box-shadow .3s;flex-shrink:0}
+nav.solid .nav-logo-img{border-color:var(--gold);box-shadow:0 0 14px rgba(200,162,106,.35)}
+.nav-logo-img:hover{box-shadow:0 0 20px rgba(200,162,106,.5)}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-family:var(--font-s);font-size:.76rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.88);position:relative;padding-bottom:3px;transition:color .3s}
+nav.solid .nav-links a{color:var(--ink)}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold)!important;color:var(--white)!important;padding:.52rem 1.4rem;border-radius:40px;font-weight:600!important;box-shadow:0 4px 14px rgba(200,162,106,.35);transition:all .3s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--gold-d)!important;transform:translateY(-2px);box-shadow:0 8px 22px rgba(200,162,106,.5)!important}
+.ham{display:none;cursor:none;flex-direction:column;gap:5px}
+.ham span{display:block;width:22px;height:1.5px;background:white;transition:.3s;border-radius:2px}
+nav.solid .ham span{background:var(--ink)}
+@media(max-width:900px){
+  nav,nav.solid{padding:.9rem 1.5rem}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:rgba(253,252,248,.98);backdrop-filter:blur(14px);padding:1.5rem 2rem 2rem;gap:1.5rem;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+  .nav-links.open{display:flex}
+  .nav-links a{color:var(--ink)!important;font-size:.9rem}
+  .ham{display:flex}
+}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:grid;grid-template-columns:52% 48%;position:relative;overflow:hidden}
+.hero-l{background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:10rem 5rem 6rem 7rem;position:relative;z-index:2}
+.hero-pre{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-d);margin-bottom:1.5rem;opacity:0;animation:slideUp .7s var(--ease) 1.4s forwards}
+.hero-pre::before{content:'';display:block;width:28px;height:1px;background:var(--teal)}
+.hero-brand{font-family:var(--font-b);font-size:clamp(5rem,8vw,8.5rem);line-height:.95;color:var(--ink);margin-bottom:1.4rem;opacity:0;animation:slideUp .8s var(--ease) 1.6s forwards}
+.hero-tag{font-family:var(--font-h);font-size:clamp(1.05rem,1.8vw,1.5rem);font-weight:300;font-style:italic;color:var(--mid);line-height:1.6;margin-bottom:2.5rem;opacity:0;animation:slideUp .7s var(--ease) 1.8s forwards}
+.hero-tag strong{font-style:normal;font-weight:600;color:var(--ink)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:slideUp .7s var(--ease) 2s forwards}
+.hero-scroll{margin-top:4rem;display:flex;align-items:center;gap:.75rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light);opacity:0;animation:slideUp .7s var(--ease) 2.2s forwards}
+.scroll-ln{width:40px;height:1px;background:var(--light);position:relative;overflow:hidden}
+.scroll-ln::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--teal);animation:scrollFlow 2s var(--ease) 2.5s infinite}
+@keyframes scrollFlow{0%{left:-100%}50%{left:0}100%{left:100%}}
+
+.hero-r{position:relative;overflow:hidden}
+.hero-photo{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--teal-d) 0%,#2D7A75 40%,var(--violet) 100%);
+  background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg'),linear-gradient(135deg,var(--teal-d),#2D7A75 40%,var(--violet));
+  background-size:cover;background-position:center top;
+  clip-path:inset(0 100% 0 0);
+  animation:revealR .9s var(--ease-out) 1.2s forwards;
+  transition:transform .1s linear;
+}
+/* Artistic overlay on hero photo */
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(253,252,248,.25) 0%,transparent 30%),linear-gradient(to top,rgba(44,32,37,.3) 0%,transparent 50%)}
+@keyframes revealR{to{clip-path:inset(0 0% 0 0)}}
+
+.hero-ring{position:absolute;top:50%;right:-60px;transform:translateY(-50%);width:450px;height:450px;border-radius:50%;border:1px solid rgba(200,162,106,.2);z-index:3;pointer-events:none;animation:ringPulse 5s ease-in-out infinite}
+.hero-ring::after{content:'';position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(79,189,179,.15)}
+@keyframes ringPulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.04)}}
+
+.hero-badge{position:absolute;bottom:2.5rem;left:-1.5rem;z-index:4;background:var(--white);border-radius:16px;padding:1rem 1.5rem 1rem 1rem;box-shadow:0 12px 40px rgba(0,0,0,.12);display:flex;align-items:center;gap:.9rem;opacity:0;animation:badgeIn .6s var(--ease) 2.4s forwards;max-width:220px}
+@keyframes badgeIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.badge-logo-img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;box-shadow:0 0 12px rgba(200,162,106,.3)}
+.badge-l1{font-family:var(--font-b);font-size:1.3rem;color:var(--ink);line-height:1}
+.badge-l2{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-top:.2rem}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .hero-l{padding:8rem 2rem 4rem;order:2}
+  .hero-r{height:65vw;order:1}
+  .hero-badge,.hero-ring{display:none}
+}
+
+/* ── STATS STRIP ── */
+.stats{background:var(--ink);display:grid;grid-template-columns:repeat(3,1fr)}
+.stat-b{padding:2.8rem 2rem;text-align:center;border-right:1px solid rgba(255,255,255,.07);transition:background .3s}
+.stat-b:last-child{border-right:none}
+.stat-b:hover{background:rgba(79,189,179,.08)}
+.stat-n{display:block;font-family:var(--font-h);font-size:3.5rem;font-weight:300;color:var(--teal-l);line-height:1;margin-bottom:.35rem}
+.stat-l{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* ── SHARED ── */
+section{padding:7rem 4rem}
+@media(max-width:900px){section{padding:5rem 1.5rem}}
+.kicker{display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-d);margin-bottom:1rem}
+.kicker::after{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.h2{font-family:var(--font-h);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:1.2rem}
+.h2 em{font-style:italic;color:var(--teal-d)}
+.h2 .sc{font-family:var(--font-b);font-size:1.3em;font-style:normal}
+.sub{font-size:.97rem;font-weight:300;color:var(--mid);max-width:500px;line-height:1.9}
+.sub.ctr{text-align:center;margin:0 auto}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(38px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-45px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv-l.on{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(45px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv-r.on{opacity:1;transform:translateX(0)}
+[d="1"]{transition-delay:.1s}[d="2"]{transition-delay:.2s}[d="3"]{transition-delay:.3s}[d="4"]{transition-delay:.4s}[d="5"]{transition-delay:.5s}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-family:var(--font-s);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:none;transition:all .3s var(--ease);border:none}
+.btn-teal{background:var(--teal);color:var(--white);box-shadow:0 4px 18px rgba(79,189,179,.35)}
+.btn-teal:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,189,179,.5)}
+.btn-gold{background:var(--gold);color:var(--white);box-shadow:0 4px 18px rgba(200,162,106,.35)}
+.btn-gold:hover{background:var(--gold-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,162,106,.5)}
+.btn-dk{background:transparent;color:var(--ink);border:1.5px solid rgba(44,32,37,.22)}
+.btn-dk:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn-wt{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35)}
+.btn-wt:hover{border-color:var(--white);background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-wa{background:#25D366;color:var(--white);box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.btn-wa:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.45)}
+.btn-ig{background:linear-gradient(135deg,#405DE6,#833AB4,#C13584,#FD1D1D);color:var(--white)}
+.btn-ig:hover{opacity:.88;transform:translateY(-2px)}
+.btn-sm{padding:.6rem 1.3rem;font-size:.72rem}
+
+/* ── SERVICIOS ── */
+#servicios{background:var(--cream)}
+.svc-head{text-align:center;margin-bottom:4.5rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1240px;margin:0 auto}
+@media(max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}}
+.svc-card{border-radius:22px;overflow:hidden;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .45s var(--ease),box-shadow .45s;cursor:none}
+.svc-card:hover{transform:translateY(-12px);box-shadow:0 22px 55px rgba(0,0,0,.11)}
+
+/* CSS background image instead of <img> */
+.svc-photo{
+  height:240px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--teal-d) 0%,var(--teal-l) 100%);
+  background-size:cover;background-position:center;
+  transition:background-position .6s var(--ease);
+}
+.svc-card:hover .svc-photo{background-position:center 30%}
+.svc-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.55) 0%,transparent 55%)}
+.svc-photo .cat{position:absolute;bottom:1.1rem;left:1.1rem;z-index:1;font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-pale)}
+.svc-photo .ico{position:absolute;top:1rem;right:1rem;z-index:1;font-size:1.5rem;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+
+.svc-body{padding:1.6rem 1.5rem}
+.svc-name{font-family:var(--font-h);font-size:1.22rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
+.svc-desc{font-size:.85rem;font-weight:300;color:var(--mid);line-height:1.8;margin-bottom:1.1rem}
+.svc-lnk{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d);transition:gap .3s}
+.svc-card:hover .svc-lnk{gap:.7rem}
+
+/* ── QUIÉN SOY ── */
+#quien{background:var(--beige);overflow:hidden}
+.quien-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+@media(max-width:900px){.quien-wrap{grid-template-columns:1fr;gap:3rem}}
+.quien-img-col{position:relative}
+.quien-frame{
+  position:relative;border-radius:4px 120px 4px 4px;overflow:hidden;aspect-ratio:3/4;
+  box-shadow:0 30px 80px rgba(0,0,0,.12);
+  background:linear-gradient(160deg,var(--teal-d) 0%,#2A6B66 40%,var(--violet) 100%);
+  background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/653485664_1559439855354530_6962803754623064622_n.jpg'),linear-gradient(160deg,var(--teal-d),#2A6B66 40%,var(--violet));
+  background-size:cover;background-position:center top;
+}
+.quien-deco-ring{position:absolute;top:-28px;right:-28px;width:160px;height:160px;border-radius:50%;border:1.5px solid var(--teal-l);pointer-events:none;z-index:0}
+.quien-deco-sq{position:absolute;bottom:-18px;left:-18px;width:90px;height:90px;border:1.5px solid var(--gold);border-radius:4px;pointer-events:none}
+.quien-stat{position:absolute;bottom:2.5rem;right:-2.5rem;background:var(--white);border-radius:14px;padding:1.2rem 1.5rem;box-shadow:0 12px 36px rgba(0,0,0,.1);z-index:2}
+@media(max-width:900px){.quien-stat{right:1rem}}
+.qs-n{font-family:var(--font-h);font-size:2.5rem;font-weight:300;color:var(--teal-d);line-height:1}
+.qs-l{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:.25rem}
+.quien-sig{font-family:var(--font-b);font-size:3.8rem;color:var(--teal-d);line-height:1;margin-bottom:.35rem;display:block}
+.quien-rol{font-size:.73rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.quien-div{width:52px;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:2px;margin-bottom:1.5rem}
+.quien-p{font-family:var(--font-h);font-size:1.07rem;font-weight:400;color:var(--mid);line-height:1.95;margin-bottom:1.3rem}
+.quien-quote{border-left:3px solid var(--teal);padding:.8rem 0 .8rem 1.5rem;margin:1.8rem 0}
+.quien-quote p{font-family:var(--font-h);font-size:1.25rem;font-style:italic;font-weight:300;color:var(--ink);line-height:1.65}
+.creds{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.cred{display:inline-flex;align-items:center;gap:.4rem;font-size:.73rem;font-weight:500;letter-spacing:.07em;color:var(--teal-d);background:var(--teal-pale);padding:.38rem .85rem;border-radius:30px}
+.cred::before{content:'✓';font-weight:700}
+
+/* ── MARQUEE GALLERY ── */
+#galeria{background:var(--cream);padding:5rem 0;overflow:hidden}
+.gal-head{text-align:center;padding:0 2rem;margin-bottom:3.5rem}
+.marquee-wrap{overflow:hidden}
+.marquee-track{display:flex;gap:1.2rem;width:max-content;animation:marqueeAnim 35s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.m-item{
+  flex-shrink:0;width:280px;height:360px;border-radius:18px;overflow:hidden;position:relative;cursor:none;
+  background:linear-gradient(135deg,var(--teal-d),var(--teal-l));
+  background-size:cover;background-position:center;
+}
+.m-item::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.7) 0%,transparent 55%);opacity:0;transition:opacity .35s;z-index:1}
+.m-item:hover::before{opacity:1}
+.m-cap{position:absolute;bottom:1.2rem;left:1.1rem;right:1.1rem;z-index:2;color:var(--white);font-size:.8rem;font-weight:500;opacity:0;transform:translateY(8px);transition:all .35s}
+.m-item:hover .m-cap{opacity:1;transform:translateY(0)}
+@keyframes marqueeAnim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── CURSOS ── */
+#cursos{background:var(--white)}
+.cursos-head{text-align:center;margin-bottom:4.5rem}
+.cursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.cursos-grid{grid-template-columns:1fr}}
+.curso-card{border-radius:22px;overflow:hidden;border:1px solid rgba(0,0,0,.06);position:relative;transition:all .45s var(--ease);cursor:none;background:var(--white)}
+.curso-card:hover{transform:translateY(-10px);box-shadow:0 22px 60px rgba(0,0,0,.08);border-color:transparent}
+.curso-img{
+  height:210px;position:relative;overflow:hidden;
+  background-size:cover;background-position:center;
+}
+.curso-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.5) 0%,transparent 55%)}
+.curso-bar{height:3px;background:linear-gradient(90deg,var(--teal),var(--gold))}
+.curso-body{padding:2rem 1.8rem}
+.curso-ico{font-size:2rem;margin-bottom:1rem;display:block}
+.curso-name{font-family:var(--font-h);font-size:1.35rem;font-weight:500;color:var(--ink);margin-bottom:.6rem}
+.curso-desc{font-size:.86rem;font-weight:300;color:var(--mid);line-height:1.85;margin-bottom:1.5rem}
+.ctags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.7rem}
+.ctag{font-size:.67rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:20px;background:var(--teal-pale);color:var(--teal-d)}
+
+/* ── CTA BAND ── */
+#cta-b{background:var(--ink);padding:6rem 4rem;text-align:center;position:relative;overflow:hidden}
+#cta-b::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 130% at 50% 50%,rgba(79,189,179,.1) 0%,transparent 70%)}
+#cta-b::after{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(200,162,106,.08);pointer-events:none}
+.cta-in{position:relative;z-index:1}
+.cta-pre{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem;display:block}
+.cta-h{font-family:var(--font-b);font-size:clamp(3.5rem,7vw,6rem);color:var(--white);line-height:1;margin-bottom:1.5rem}
+.cta-sub{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.6);max-width:450px;margin:0 auto 2.5rem;line-height:1.9}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── TESTIMONIOS ── */
+#test{background:var(--beige)}
+.test-head{text-align:center;margin-bottom:4rem}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto}
+@media(max-width:900px){.test-grid{grid-template-columns:1fr}}
+.tcard{background:var(--white);border-radius:22px;padding:2.5rem 2rem;box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .4s var(--ease),box-shadow .4s;cursor:none}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.tcard-stars{color:var(--gold);letter-spacing:.1em;margin-bottom:1.2rem;font-size:1rem}
+.tcard-q{font-family:var(--font-h);font-size:1rem;font-style:italic;color:var(--ink);line-height:1.85;margin-bottom:1.5rem}
+.tcard-q::before{content:'\201C';font-size:2.5rem;color:var(--teal-l);line-height:0;vertical-align:-.5rem;margin-right:.1rem}
+.tcard-author{display:flex;align-items:center;gap:.8rem}
+.t-avatar{width:44px;height:44px;border-radius:50%;border:2px solid var(--teal-l);background:linear-gradient(135deg,var(--teal),var(--teal-d));background-size:cover;flex-shrink:0}
+.t-name{font-size:.85rem;font-weight:600;color:var(--ink)}
+.t-svc{font-size:.72rem;color:var(--mid);margin-top:.1rem}
+
+/* ── CONTACTO ── */
+#contacto{background:var(--cream)}
+.contact-wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+@media(max-width:900px){.contact-wrap{grid-template-columns:1fr;gap:3rem}}
+.ct-title{font-family:var(--font-h);font-size:2.4rem;font-weight:400;color:var(--ink);margin-bottom:.4rem}
+.ct-sub{font-size:.88rem;font-weight:300;color:var(--mid);margin-bottom:2.5rem;line-height:1.8}
+.ci{display:flex;align-items:flex-start;gap:1.1rem;margin-bottom:1.8rem}
+.ci-ic{width:48px;height:48px;flex-shrink:0;border-radius:13px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.15rem;transition:background .3s}
+.ci:hover .ci-ic{background:rgba(79,189,179,.25)}
+.ci-lb{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-bottom:.25rem}
+.ci-vl{font-size:.9rem;color:var(--ink);line-height:1.6}
+.ci-vl a{color:var(--teal-d);transition:color .2s}
+.ci-vl a:hover{color:var(--gold)}
+.soc-row{display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap}
+.map-box{background:var(--ink);border-radius:24px;padding:3rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.1rem}
+.map-pin{font-size:3rem;margin-bottom:1rem;animation:pinBounce 2.5s ease-in-out infinite}
+@keyframes pinBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.map-biz{font-family:var(--font-h);font-size:1.25rem;color:var(--white);margin-bottom:.6rem}
+.map-addr{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:2rem}
+
+/* ── FOOTER ── */
+footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.ft-brand{font-family:var(--font-b);font-size:2.5rem;color:var(--teal-l)}
+.ft-copy{font-size:.74rem;font-weight:300;color:rgba(255,255,255,.22);line-height:1.8}
+.ft-ig a{font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .3s}
+.ft-ig a:hover{color:var(--teal-l)}
+
+/* ── WA FAB ── */
+.wa-fab{position:fixed;bottom:2rem;right:2rem;z-index:600;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:waPop 2.5s ease-in-out infinite;transition:transform .25s;cursor:none}
+.wa-fab:hover{transform:scale(1.12)}
+.wa-fab svg{width:30px;height:30px;fill:white}
+@keyframes waPop{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 40px rgba(37,211,102,.7)}}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-brand">Las Violetas</div>
+  <div class="l-line"><div class="l-prog"></div></div>
+</div>
+
+<!-- WA FAB -->
+<a href="https://wa.me/5493875046855" target="_blank" class="wa-fab" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <img src="logo.png" class="nav-logo-img" alt="Las Violetas Logo">
+    Las Violetas
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#quien">Quién soy</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="nav-cta">Reservar ✨</a></li>
+  </ul>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <div class="hero-pre">Estética &amp; Spa · Salta, Argentina</div>
+    <h1 class="hero-brand">Las Violetas</h1>
+    <p class="hero-tag"><strong>Lucí radiante con Estilo.</strong><br>Tratamientos pensados para que te sientas increíble — por dentro y por fuera.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="btn btn-gold">Reservar turno</a>
+      <a href="#servicios" class="btn btn-dk">Ver servicios</a>
+    </div>
+    <div class="hero-scroll"><div class="scroll-ln"></div>Scroll para explorar</div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-ring"></div>
+    <div class="hero-photo" id="heroPhoto"></div>
+    <div class="hero-badge">
+      <img src="logo.png" class="badge-logo-img" alt="Las Violetas Logo">
+      <div><div class="badge-l1">Las Violetas</div><div class="badge-l2">By Rosario Gómez</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-b"><span class="stat-n" data-count="200">0</span><span class="stat-l">Clientas satisfechas</span></div>
+  <div class="stat-b"><span class="stat-n" data-count="5">0</span><span class="stat-l">Años de experiencia</span></div>
+  <div class="stat-b"><span class="stat-n" data-count="10">0</span><span class="stat-l">Tratamientos disponibles</span></div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="svc-head rv">
+    <div class="kicker">Lo que hacemos</div>
+    <h2 class="h2">Nuestros <em>tratamientos</em></h2>
+    <p class="sub ctr">Cada servicio está diseñado con dedicación para que te vayas sintiéndote la mejor versión de vos.</p>
+  </div>
+  <div class="svc-grid">
+
+    <div class="svc-card rv" d="1">
+      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg'),linear-gradient(135deg,#3A9A92,#A8DDD9)">
+        <span class="cat">Facial</span><span class="ico">✨</span>
+      </div>
+      <div class="svc-body">
+        <h3 class="svc-name">Limpieza Facial Premium</h3>
+        <p class="svc-desc">Eliminá impurezas, hidratá en profundidad y lográ una piel luminosa, renovada y radiante.</p>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Limpieza%20Facial" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv" d="2">
+      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg'),linear-gradient(135deg,#7B30A8,#3A9A92)">
+        <span class="cat">Corporal</span><span class="ico">💎</span>
+      </div>
+      <div class="svc-body">
+        <h3 class="svc-name">Tratamiento Reductor</h3>
+        <p class="svc-desc">Maderoterapia, Radiofrecuencia y Ultracavitador. Reducí medidas y reafirmá tu piel con resultados visibles.</p>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Tratamiento%20Corporal" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv" d="3">
+      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg'),linear-gradient(135deg,#C8A26A,#7B30A8)">
+        <span class="cat">Uñas</span><span class="ico">💅</span>
+      </div>
+      <div class="svc-body">
+        <h3 class="svc-name">Manicuría &amp; Diseño</h3>
+        <p class="svc-desc">Técnicas actuales y diseños únicos. Uñas perfectas que expresan tu personalidad y duran.</p>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Manicuría" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv" d="4">
+      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,#2D7A75,#C8A26A)">
+        <span class="cat">Formación</span><span class="ico">🎓</span>
+      </div>
+      <div class="svc-body">
+        <h3 class="svc-name">Cursos &amp; Talleres</h3>
+        <p class="svc-desc">Aprendé estética con quien sabe. Formación práctica, cupos limitados, certificado oficial.</p>
+        <a href="#cursos" class="svc-lnk">Ver cursos →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUIÉN SOY -->
+<section id="quien">
+  <div class="quien-wrap">
+    <div class="quien-img-col rv-l">
+      <div class="quien-deco-ring"></div>
+      <div class="quien-frame"></div>
+      <div class="quien-deco-sq"></div>
+      <div class="quien-stat">
+        <div class="qs-n" data-count="5">0</div>
+        <div class="qs-l">Años creando<br>belleza real</div>
+      </div>
+    </div>
+    <div class="rv-r">
+      <div class="kicker">Quién soy</div>
+      <span class="quien-sig">Rosario Gómez</span>
+      <p class="quien-rol">Dermatocosmiatra &amp; Esteticista · Salta, Argentina</p>
+      <div class="quien-div"></div>
+      <p class="quien-p">Soy Rosario Gómez, fundadora de <strong>Las Violetas Estética &amp; Spa</strong>. Mi historia con la belleza empezó siendo muy chica — siempre creí que cuidarse es un acto de amor propio.</p>
+      <p class="quien-p">Me formé como Dermatocosmiatra y Esteticista para ofrecerte algo más que un servicio: una <em>experiencia real de bienestar</em>. Cada tratamiento lo diseño pensando en vos, en lo que tu piel necesita, en cómo querés sentirte.</p>
+      <div class="quien-quote">
+        <p>"Mi objetivo es que salgas de Las Violetas sintiéndote radiante, confiada y completamente vos."</p>
+      </div>
+      <div class="creds">
+        <span class="cred">Dermatocosmiatra</span>
+        <span class="cred">Esteticista Integral</span>
+        <span class="cred">Docente de Talleres</span>
+        <span class="cred">+200 clientas felices</span>
+      </div>
+      <a href="https://wa.me/5493875046855?text=Hola%20Rosario!%20Quiero%20reservar%20un%20turno" target="_blank" class="btn btn-teal">Reservar con Rosario</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA MARQUEE -->
+<section id="galeria">
+  <div class="gal-head rv">
+    <div class="kicker" style="justify-content:center;margin-bottom:.8rem">Nuestro trabajo</div>
+    <h2 class="h2" style="text-align:center">Momentos <em>reales</em></h2>
+    <p class="sub ctr" style="margin-top:.5rem">Pasá el cursor para pausar y disfrutar cada imagen.</p>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- Each item uses CSS bg with gradient fallback -->
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg')"><div class="m-cap">Evento de Moda &amp; Estética ✨</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg');background-color:#3A9A92"><div class="m-cap">Limpieza Facial Premium</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg');background-color:#7B30A8"><div class="m-cap">Clienta feliz 💜</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg');background-color:#C8A26A"><div class="m-cap">Taller Kids 🌈</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg');background-color:#3A9A92"><div class="m-cap">Certificación de Manicuría 🎓</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg');background-color:#2D7A75"><div class="m-cap">Tratamiento Corporal</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/566346013_17946406977049476_3722200288206379346_n.jpg');background-color:#7B30A8"><div class="m-cap">Comunidad &amp; Conciencia 💚</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg')"><div class="m-cap">Evento de Moda &amp; Estética ✨</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg');background-color:#3A9A92"><div class="m-cap">Limpieza Facial Premium</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg');background-color:#7B30A8"><div class="m-cap">Clienta feliz 💜</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg');background-color:#C8A26A"><div class="m-cap">Taller Kids 🌈</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg');background-color:#3A9A92"><div class="m-cap">Certificación de Manicuría 🎓</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg');background-color:#2D7A75"><div class="m-cap">Tratamiento Corporal</div></div>
+      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/566346013_17946406977049476_3722200288206379346_n.jpg');background-color:#7B30A8"><div class="m-cap">Comunidad &amp; Conciencia 💚</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem" class="rv">
+    <a href="https://www.instagram.com/lasvioletas.estetica" target="_blank" class="btn btn-dk">📸 Ver más en @lasvioletas.estetica</a>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section id="cursos">
+  <div class="cursos-head rv">
+    <div class="kicker">Formación profesional</div>
+    <h2 class="h2">Cursos &amp; <em>Talleres</em></h2>
+    <p class="sub ctr">Aprendé con quien sabe. Cupos limitados — ¡reservá el tuyo hoy!</p>
+  </div>
+  <div class="cursos-grid">
+
+    <div class="curso-card rv" d="1">
+      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg'),linear-gradient(135deg,#3A9A92,#A8DDD9)"></div>
+      <div class="curso-bar"></div>
+      <div class="curso-body">
+        <span class="curso-ico">💅</span>
+        <h3 class="curso-name">Curso Experto en Manicuría</h3>
+        <p class="curso-desc">Formación completa: técnicas actuales, diseños creativos, cuidado profesional. Certificado oficial al finalizar. Ideal para empezar tu propia carrera.</p>
+        <div class="ctags"><span class="ctag">Certificado oficial</span><span class="ctag">100% práctico</span><span class="ctag">Cupos limitados</span></div>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20el%20Curso%20de%20Manicuría" target="_blank" class="btn btn-teal btn-sm">Consultar cupos</a>
+      </div>
+    </div>
+
+    <div class="curso-card rv" d="2">
+      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,#C8A26A,#7B30A8)"></div>
+      <div class="curso-bar"></div>
+      <div class="curso-body">
+        <span class="curso-ico">🌈</span>
+        <h3 class="curso-name">Taller Kids</h3>
+        <p class="curso-desc">Un espacio mágico para que las más pequeñas aprendan maquillaje seguro, cuidado de piel y diseño de uñas. Incluye desfile, fotos y certificado.</p>
+        <div class="ctags"><span class="ctag">Para niñas</span><span class="ctag">Maquillaje seguro</span><span class="ctag">Desfile ✨</span></div>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20el%20Taller%20Kids" target="_blank" class="btn btn-teal btn-sm">Consultar cupos</a>
+      </div>
+    </div>
+
+    <div class="curso-card rv" d="3">
+      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg'),linear-gradient(135deg,#7B30A8,#2D7A75)"></div>
+      <div class="curso-bar"></div>
+      <div class="curso-body">
+        <span class="curso-ico">✨</span>
+        <h3 class="curso-name">Talleres de Estética</h3>
+        <p class="curso-desc">Talleres intensivos de estética facial y corporal. Aprendé técnicas profesionales y transformá tu carrera. Próximas fechas disponibles por consulta.</p>
+        <div class="ctags"><span class="ctag">Facial</span><span class="ctag">Corporal</span><span class="ctag">Intensivo</span></div>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20los%20Talleres%20de%20Estética" target="_blank" class="btn btn-teal btn-sm">Consultar fechas</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-b">
+  <div class="cta-in rv">
+    <span class="cta-pre">¿Lista para empezar?</span>
+    <h2 class="cta-h">Reservá tu turno hoy</h2>
+    <p class="cta-sub">Escribinos por WhatsApp y coordinamos el día y horario que mejor te quede. ¡Atendemos en Salta Capital!</p>
+    <div class="cta-row">
+      <a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="btn btn-wa">💬 Escribir por WhatsApp</a>
+      <a href="https://www.instagram.com/lasvioletas.estetica" target="_blank" class="btn btn-wt">📸 Ver Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="test">
+  <div class="test-head rv">
+    <div class="kicker">Lo que dicen</div>
+    <h2 class="h2">Nuestras <em>clientas</em></h2>
+    <p class="sub ctr" style="margin-top:.5rem">Palabras que nos llenan el corazón todos los días.</p>
+  </div>
+  <div class="test-grid">
+    <div class="tcard rv" d="1">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-q">Hice la limpieza facial premium y quedé increíble. Rosario es muy profesional y se nota que ama lo que hace. Mi piel quedó renovada y luminosa.</p>
+      <div class="tcard-author">
+        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg'),linear-gradient(135deg,var(--teal),var(--teal-d))"></div>
+        <div><div class="t-name">Anahí</div><div class="t-svc">Limpieza Facial Premium</div></div>
+      </div>
+    </div>
+    <div class="tcard rv" d="2">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-q">El Taller Kids fue una experiencia mágica para mi hija. Aprendió un montón, desfiló con mucho estilo y se fue con su certificado. ¡Repetimos sin dudarlo!</p>
+      <div class="tcard-author">
+        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,var(--gold),var(--gold-d))"></div>
+        <div><div class="t-name">Ampi, mamá de Martina</div><div class="t-svc">Taller Kids</div></div>
+      </div>
+    </div>
+    <div class="tcard rv" d="3">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-q">Empecé con el tratamiento corporal y los resultados me sorprendieron desde las primeras sesiones. Se nota el profesionalismo y la dedicación en cada detalle.</p>
+      <div class="tcard-author">
+        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/653485664_1559439855354530_6962803754623064622_n.jpg'),linear-gradient(135deg,var(--violet),var(--teal-d))"></div>
+        <div><div class="t-name">Valentina R.</div><div class="t-svc">Tratamiento Corporal Reductor</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="rv" style="text-align:center;margin-bottom:4rem">
+    <div class="kicker" style="justify-content:center;margin-bottom:.8rem">Encontranos</div>
+    <h2 class="h2">Estamos en <em>Salta Capital</em></h2>
+    <p class="sub ctr">Respondemos rápido por WhatsApp o Instagram.</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="rv-l">
+      <h3 class="ct-title">Contacto</h3>
+      <p class="ct-sub">Coordinamos turnos por WhatsApp — escribinos cuando quieras.</p>
+      <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lb">Dirección</div><div class="ci-vl">Buenos Aires 135, Oficina 301<br>Edificio Palermo, Salta, Argentina</div></div></div>
+      <div class="ci"><div class="ci-ic">📲</div><div><div class="ci-lb">WhatsApp</div><div class="ci-vl"><a href="https://wa.me/5493875046855">+54 9 387 504-6855</a></div></div></div>
+      <div class="ci"><div class="ci-ic">📸</div><div><div class="ci-lb">Instagram</div><div class="ci-vl"><a href="https://www.instagram.com/lasvioletas.estetica" target="_blank">@lasvioletas.estetica</a></div></div></div>
+      <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-lb">Turnos</div><div class="ci-vl">Con previa coordinación — escribinos para el mejor horario</div></div></div>
+      <div class="soc-row">
+        <a href="https://wa.me/5493875046855" target="_blank" class="btn btn-wa btn-sm">💬 WhatsApp</a>
+        <a href="https://www.instagram.com/lasvioletas.estetica" target="_blank" class="btn btn-ig btn-sm">📸 Instagram</a>
+      </div>
+    </div>
+    <div class="map-box rv-r">
+      <div class="map-pin">📍</div>
+      <div class="map-biz">Las Violetas Estética &amp; Spa</div>
+      <div class="map-addr">Buenos Aires 135, Of. 301<br>Edificio Palermo<br>Salta Capital, Argentina</div>
+      <a href="https://maps.google.com/?q=Buenos+Aires+135,+Salta,+Argentina" target="_blank" class="btn btn-teal">🗺️ Ver en Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <img src="logo.png" alt="Logo" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,221,217,.4)">
+    <div class="ft-brand" style="margin:0">Las Violetas</div>
+  </div>
+  <div class="ft-copy">© 2025 Las Violetas Estética &amp; Spa · By Rosario Gómez · Salta, Argentina<br>✨ Lucí radiante con Estilo ✨</div>
+  <div class="ft-ig"><a href="https://www.instagram.com/lasvioletas.estetica" target="_blank">📸 @lasvioletas.estetica</a></div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const c=document.getElementById('cur'),cr=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px'});
+(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c.style.width='14px';c.style.height='14px';c.style.background='var(--gold)';cr.style.width='52px';cr.style.height='52px'});
+  el.addEventListener('mouseleave',()=>{c.style.width='10px';c.style.height='10px';c.style.background='var(--teal)';cr.style.width='36px';cr.style.height='36px'});
+});
+
+/* ── LOADER ── */
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),1900));
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>80));
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open')}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+/* ── REVEAL ── */
+const robs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');robs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>robs.observe(el));
+
+/* ── COUNTER ── */
+function countUp(el,target){
+  let n=0;const step=Math.max(1,Math.floor(target/50));
+  const iv=setInterval(()=>{n=Math.min(n+step,target);el.textContent=(n>=target?'+':'')+n;if(n>=target)clearInterval(iv)},20);
+}
+const cobs=new IntersectionObserver(en=>{
+  en.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-count]').forEach(el=>countUp(el,+el.dataset.count));
+      cobs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stats,.quien-stat').forEach(el=>cobs.observe(el));
+
+/* ── PARALLAX HERO ── */
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('heroPhoto');
+  if(p)p.style.backgroundPositionY=`calc(top + ${scrollY*.15}px)`;
+});
+</script>
+</body>
+</html>
