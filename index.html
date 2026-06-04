@@ -191,7 +191,8 @@ section{padding:7rem 4rem}
 @media(max-width:640px){.trat-grid{grid-template-columns:1fr}}
 .trat-card{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .45s var(--ease),box-shadow .45s;cursor:none}
 .trat-card:hover{transform:translateY(-10px);box-shadow:0 22px 55px rgba(0,0,0,.1)}
-.trat-photo{height:200px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--teal-d),var(--teal-l));background-size:cover;background-position:center;transition:background-position .6s var(--ease)}
+.trat-photo{height:200px;position:relative;overflow:hidden;background-color:var(--teal-d);background-image:linear-gradient(135deg,var(--teal-d),var(--teal-l));background-size:cover;background-position:center;background-repeat:no-repeat;transition:background-position .6s var(--ease);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+@media(max-width:640px){.trat-photo{height:220px}}
 .trat-card:hover .trat-photo{background-position:center 35%}
 .trat-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.5) 0%,transparent 55%)}
 .trat-photo .cat{position:absolute;bottom:1rem;left:1.1rem;z-index:1;font-size:.64rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-pale)}
@@ -208,7 +209,7 @@ section{padding:7rem 4rem}
 /* Featured Hifu */
 .trat-feat{max-width:1240px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr 1fr;border-radius:26px;overflow:hidden;background:linear-gradient(135deg,var(--ink),#3a2330);box-shadow:0 28px 70px rgba(0,0,0,.22)}
 @media(max-width:900px){.trat-feat{grid-template-columns:1fr}}
-.feat-photo{min-height:400px;background:linear-gradient(135deg,var(--gold),var(--violet));background-size:cover;background-position:center;position:relative}
+.feat-photo{min-height:400px;background-color:var(--gold-d);background-image:linear-gradient(135deg,var(--gold),var(--violet));background-size:cover;background-position:center;background-repeat:no-repeat;position:relative;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .feat-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 35%,rgba(58,35,48,.82) 100%)}
 @media(max-width:900px){.feat-photo{min-height:260px}.feat-photo::after{background:linear-gradient(to top,rgba(58,35,48,.9),transparent 55%)}}
 .feat-body{padding:3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
@@ -289,7 +290,9 @@ section{padding:7rem 4rem}
 .curso-card:hover{transform:translateY(-10px);box-shadow:0 22px 60px rgba(0,0,0,.08);border-color:transparent}
 .curso-img{
   height:210px;position:relative;overflow:hidden;
-  background-size:cover;background-position:center;
+  background-color:var(--teal-d);
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
 }
 .curso-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.5) 0%,transparent 55%)}
 .curso-bar{height:3px;background:linear-gradient(90deg,var(--teal),var(--gold))}
@@ -432,7 +435,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="trat-grid">
 
     <div class="trat-card rv" d="1">
-      <div class="trat-photo" style="background-image:url('img/pure-glow-detox.png')"><span class="cat">Facial · Detox</span></div>
+      <div class="trat-photo" style="background-image:url('img/pure-glow-detox.jpg')"><span class="cat">Facial · Detox</span></div>
       <div class="trat-body">
         <h3 class="trat-name">Pure Glow Detox</h3>
         <p class="trat-tech">Limpieza profunda detox</p>
