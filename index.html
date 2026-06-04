@@ -13,6 +13,7 @@
   --teal:#4FBDB3;--teal-d:#3A9A92;--teal-l:#A8DDD9;--teal-pale:#E8F7F6;
   --gold:#C8A26A;--gold-d:#A8824A;--gold-pale:#F7EDDA;
   --violet:#7B30A8;--violet-l:#C090D8;
+  --pink:#E29BB6;--pink-d:#D17A9B;
   --ink:#2C2025;--mid:#7A7080;--light:#C8C0C8;--white:#FFF;
   --font-b:'Great Vibes',cursive;
   --font-h:'Cormorant Garamond',serif;
@@ -85,7 +86,7 @@ nav.solid .ham span{background:var(--ink)}
 .hero-photo{
   position:absolute;inset:0;
   background:linear-gradient(135deg,var(--teal-d) 0%,#2D7A75 40%,var(--violet) 100%);
-  background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg'),linear-gradient(135deg,var(--teal-d),#2D7A75 40%,var(--violet));
+  background-image:url('img/lv_img_00.jpg'),linear-gradient(135deg,var(--teal-d),#2D7A75 40%,var(--violet));
   background-size:cover;background-position:center top;
   clip-path:inset(0 100% 0 0);
   animation:revealR .9s var(--ease-out) 1.2s forwards;
@@ -184,6 +185,56 @@ section{padding:7rem 4rem}
 .svc-lnk{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d);transition:gap .3s}
 .svc-card:hover .svc-lnk{gap:.7rem}
 
+/* ── TRATAMIENTOS ── */
+.trat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;max-width:1240px;margin:0 auto}
+@media(max-width:1000px){.trat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.trat-grid{grid-template-columns:1fr}}
+.trat-card{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.05);transition:transform .45s var(--ease),box-shadow .45s;cursor:none}
+.trat-card:hover{transform:translateY(-10px);box-shadow:0 22px 55px rgba(0,0,0,.1)}
+.trat-photo{height:200px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--teal-d),var(--teal-l));background-size:cover;background-position:center;transition:background-position .6s var(--ease)}
+.trat-card:hover .trat-photo{background-position:center 35%}
+.trat-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(44,32,37,.5) 0%,transparent 55%)}
+.trat-photo .cat{position:absolute;bottom:1rem;left:1.1rem;z-index:1;font-size:.64rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-pale)}
+.trat-body{padding:1.6rem 1.5rem;display:flex;flex-direction:column;flex:1}
+.trat-name{font-family:var(--font-h);font-size:1.32rem;font-weight:600;color:var(--ink);line-height:1.1}
+.trat-tech{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:.3rem 0 .8rem}
+.trat-desc{font-size:.84rem;font-weight:300;color:var(--mid);line-height:1.75;margin-bottom:1.1rem}
+.inc-lb{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-bottom:.6rem}
+.inc-list{display:flex;flex-direction:column;gap:.42rem;margin-bottom:1.4rem}
+.inc-list li{display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;font-weight:300;color:var(--ink);line-height:1.4}
+.inc-list li::before{content:'✓';color:var(--teal);font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:.05rem}
+.trat-card .svc-lnk{margin-top:auto}
+
+/* Featured Hifu */
+.trat-feat{max-width:1240px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr 1fr;border-radius:26px;overflow:hidden;background:linear-gradient(135deg,var(--ink),#3a2330);box-shadow:0 28px 70px rgba(0,0,0,.22)}
+@media(max-width:900px){.trat-feat{grid-template-columns:1fr}}
+.feat-photo{min-height:400px;background:linear-gradient(135deg,var(--gold),var(--violet));background-size:cover;background-position:center;position:relative}
+.feat-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 35%,rgba(58,35,48,.82) 100%)}
+@media(max-width:900px){.feat-photo{min-height:260px}.feat-photo::after{background:linear-gradient(to top,rgba(58,35,48,.9),transparent 55%)}}
+.feat-body{padding:3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+@media(max-width:900px){.feat-body{padding:2.2rem}}
+.feat-badge{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:linear-gradient(90deg,var(--gold),var(--gold-d));padding:.42rem 1rem;border-radius:30px;margin-bottom:1.2rem}
+.feat-name{font-family:var(--font-h);font-size:2.3rem;font-weight:600;color:var(--white);line-height:1.05;margin-bottom:1rem}
+.feat-name em{font-style:italic;color:var(--teal-l)}
+.feat-desc{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.85;margin-bottom:1.6rem}
+.feat-inc{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;margin-bottom:1.9rem}
+.feat-inc li{display:flex;align-items:flex-start;gap:.5rem;font-size:.84rem;font-weight:400;color:rgba(255,255,255,.9)}
+.feat-inc li::before{content:'✦';color:var(--gold);flex-shrink:0}
+@media(max-width:520px){.feat-inc{grid-template-columns:1fr}}
+/* override inc-list styles inside featured dark card */
+.trat-feat .inc-list li{color:rgba(255,255,255,.88)}
+.trat-feat .inc-list li::before{color:var(--gold)}
+
+/* ── BEAUTY TIPS ── */
+#tips{background:var(--rose)}
+.tips-head{text-align:center;margin-bottom:3.5rem}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 3rem;max-width:1080px;margin:0 auto}
+@media(max-width:820px){.tips-grid{grid-template-columns:repeat(2,1fr);gap:0 2.2rem}}
+@media(max-width:520px){.tips-grid{grid-template-columns:1fr}}
+.tip{padding:1.25rem 0;border-bottom:1px solid rgba(209,122,155,.22)}
+.tip-t{display:block;font-size:.92rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--pink-d);margin-bottom:.3rem;line-height:1.25}
+.tip-d{font-size:.92rem;font-weight:300;color:var(--mid);line-height:1.5}
+
 /* ── QUIÉN SOY ── */
 #quien{background:var(--beige);overflow:hidden}
 .quien-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
@@ -193,7 +244,7 @@ section{padding:7rem 4rem}
   position:relative;border-radius:4px 120px 4px 4px;overflow:hidden;aspect-ratio:3/4;
   box-shadow:0 30px 80px rgba(0,0,0,.12);
   background:linear-gradient(160deg,var(--teal-d) 0%,#2A6B66 40%,var(--violet) 100%);
-  background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/653485664_1559439855354530_6962803754623064622_n.jpg'),linear-gradient(160deg,var(--teal-d),#2A6B66 40%,var(--violet));
+  background-image:url('img/ig_00.jpg'),linear-gradient(160deg,var(--teal-d),#2A6B66 40%,var(--violet));
   background-size:cover;background-position:center top;
 }
 .quien-deco-ring{position:absolute;top:-28px;right:-28px;width:160px;height:160px;border-radius:50%;border:1.5px solid var(--teal-l);pointer-events:none;z-index:0}
@@ -216,7 +267,7 @@ section{padding:7rem 4rem}
 #galeria{background:var(--cream);padding:5rem 0;overflow:hidden}
 .gal-head{text-align:center;padding:0 2rem;margin-bottom:3.5rem}
 .marquee-wrap{overflow:hidden}
-.marquee-track{display:flex;gap:1.2rem;width:max-content;animation:marqueeAnim 35s linear infinite}
+.marquee-track{display:flex;gap:1.2rem;width:max-content;animation:marqueeAnim 50s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
 .m-item{
   flex-shrink:0;width:280px;height:360px;border-radius:18px;overflow:hidden;position:relative;cursor:none;
@@ -331,10 +382,11 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
     Las Violetas
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#servicios">Tratamientos</a></li>
     <li><a href="#quien">Quién soy</a></li>
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#tips">Beauty Tips</a></li>
     <li><a href="#contacto">Contacto</a></li>
     <li><a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="nav-cta">Reservar ✨</a></li>
   </ul>
@@ -370,59 +422,164 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="stat-b"><span class="stat-n" data-count="10">0</span><span class="stat-l">Tratamientos disponibles</span></div>
 </div>
 
-<!-- SERVICIOS -->
+<!-- TRATAMIENTOS -->
 <section id="servicios">
   <div class="svc-head rv">
     <div class="kicker">Lo que hacemos</div>
-    <h2 class="h2">Nuestros <em>tratamientos</em></h2>
-    <p class="sub ctr">Cada servicio está diseñado con dedicación para que te vayas sintiéndote la mejor versión de vos.</p>
+    <h2 class="h2">Tratamientos <em>faciales</em></h2>
+    <p class="sub ctr">Cada protocolo está pensado según lo que tu piel necesita. Mirá todo lo que incluye cada uno.</p>
   </div>
-  <div class="svc-grid">
+  <div class="trat-grid">
 
-    <div class="svc-card rv" d="1">
-      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg'),linear-gradient(135deg,#3A9A92,#A8DDD9)">
-        <span class="cat">Facial</span><span class="ico">✨</span>
-      </div>
-      <div class="svc-body">
-        <h3 class="svc-name">Limpieza Facial Premium</h3>
-        <p class="svc-desc">Eliminá impurezas, hidratá en profundidad y lográ una piel luminosa, renovada y radiante.</p>
-        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Limpieza%20Facial" target="_blank" class="svc-lnk">Consultar →</a>
+    <div class="trat-card rv" d="1">
+      <div class="trat-photo" style="background-image:url('img/ig_01.jpg')"><span class="cat">Facial · Detox</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Pure Glow Detox</h3>
+        <p class="trat-tech">Limpieza profunda detox</p>
+        <p class="trat-desc">Purifica, oxigena y deja la piel fresca y luminosa. Ideal para revitalizar el rostro.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Nieve carbónica</li>
+          <li>Ultrasonido con bisabolol</li>
+          <li>Máscaras drenantes</li>
+          <li>Masaje relajante</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Pure%20Glow%20Detox" target="_blank" class="svc-lnk">Consultar →</a>
       </div>
     </div>
 
-    <div class="svc-card rv" d="2">
-      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg'),linear-gradient(135deg,#7B30A8,#3A9A92)">
-        <span class="cat">Corporal</span><span class="ico">💎</span>
-      </div>
-      <div class="svc-body">
-        <h3 class="svc-name">Tratamiento Reductor</h3>
-        <p class="svc-desc">Maderoterapia, Radiofrecuencia y Ultracavitador. Reducí medidas y reafirmá tu piel con resultados visibles.</p>
-        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Tratamiento%20Corporal" target="_blank" class="svc-lnk">Consultar →</a>
-      </div>
-    </div>
-
-    <div class="svc-card rv" d="3">
-      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg'),linear-gradient(135deg,#C8A26A,#7B30A8)">
-        <span class="cat">Uñas</span><span class="ico">💅</span>
-      </div>
-      <div class="svc-body">
-        <h3 class="svc-name">Manicuría &amp; Diseño</h3>
-        <p class="svc-desc">Técnicas actuales y diseños únicos. Uñas perfectas que expresan tu personalidad y duran.</p>
-        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Manicuría" target="_blank" class="svc-lnk">Consultar →</a>
-      </div>
-    </div>
-
-    <div class="svc-card rv" d="4">
-      <div class="svc-photo" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,#2D7A75,#C8A26A)">
-        <span class="cat">Formación</span><span class="ico">🎓</span>
-      </div>
-      <div class="svc-body">
-        <h3 class="svc-name">Cursos &amp; Talleres</h3>
-        <p class="svc-desc">Aprendé estética con quien sabe. Formación práctica, cupos limitados, certificado oficial.</p>
-        <a href="#cursos" class="svc-lnk">Ver cursos →</a>
+    <div class="trat-card rv" d="2">
+      <div class="trat-photo" style="background-image:url('img/ig_02.jpg')"><span class="cat">Facial · Peeling</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Radiance Peel</h3>
+        <p class="trat-tech">Protocolo completo</p>
+        <p class="trat-desc">Renovación profunda con peeling. El tratamiento más completo para una piel radiante.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Crioterapia</li>
+          <li>Nieve carbónica</li>
+          <li>Ultrasonido</li>
+          <li>Ultrasonido con bisabolol</li>
+          <li>Máscaras drenantes</li>
+          <li>Masaje relajante</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Radiance%20Peel" target="_blank" class="svc-lnk">Consultar →</a>
       </div>
     </div>
 
+    <div class="trat-card rv" d="3">
+      <div class="trat-photo" style="background-image:url('img/ig_03.jpg')"><span class="cat">Facial · Sensible</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Calm Skin Therapy</h3>
+        <p class="trat-tech">Pieles sensibles</p>
+        <p class="trat-desc">Calma, descongestiona y reduce la rojez. Pensado para pieles sensibles o reactivas.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Nieve carbónica</li>
+          <li>Masaje relajante</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Calm%20Skin%20Therapy" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="trat-card rv" d="1">
+      <div class="trat-photo" style="background-image:url('img/ig_04.jpg')"><span class="cat">Facial · Acné</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Clear Balance Pro</h3>
+        <p class="trat-tech">Piel grasa &amp; acné</p>
+        <p class="trat-desc">Controla el sebo y purifica en profundidad. Ideal para piel grasa y con acné.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Ultrasonido</li>
+          <li>Ultrasonido con bisabolol</li>
+          <li>Máscaras drenantes</li>
+          <li>Masaje relajante</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Clear%20Balance%20Pro" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="trat-card rv" d="2">
+      <div class="trat-photo" style="background-image:url('img/ig_05.jpg')"><span class="cat">Facial · Luminosidad</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Lumina Bright</h3>
+        <p class="trat-tech">Lumitens</p>
+        <p class="trat-desc">Ilumina y unifica el tono. Ideal para manchas y piel apagada que necesita brillo.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Crioterapia</li>
+          <li>Nieve carbónica</li>
+          <li>Ultrasonido</li>
+          <li>Ultrasonido con bisabolol</li>
+          <li>Máscaras drenantes</li>
+          <li>Masaje Kaōlif</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Lumina%20Bright" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+    <div class="trat-card rv" d="3">
+      <div class="trat-photo" style="background-image:url('img/ig_06.jpg')"><span class="cat">Facial · Hidratación</span></div>
+      <div class="trat-body">
+        <h3 class="trat-name">Hydra Luxe</h3>
+        <p class="trat-tech">Hidralift</p>
+        <p class="trat-desc">Hidratación intensa con efecto lifting. Nutre, reafirma y devuelve la elasticidad.</p>
+        <div class="inc-lb">Incluye</div>
+        <ul class="inc-list">
+          <li>Limpieza profunda</li>
+          <li>Crioterapia</li>
+          <li>Nieve carbónica</li>
+          <li>Ultrasonido</li>
+          <li>Ultrasonido con bisabolol</li>
+          <li>Máscaras drenantes</li>
+          <li>Masaje Kaōlif</li>
+          <li>Máscara de vitaminas</li>
+          <li>Protección UVA / UVB</li>
+          <li>Tips de cuidados</li>
+        </ul>
+        <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Hydra%20Luxe" target="_blank" class="svc-lnk">Consultar →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRATAMIENTO ESTRELLA -->
+  <div class="trat-feat rv">
+    <div class="feat-photo" style="background-image:url('img/ig_07.jpg')"></div>
+    <div class="feat-body">
+      <span class="feat-badge">⭐ Tratamiento estrella</span>
+      <h3 class="feat-name">Hifu <em>Lift Firm Élite</em></h3>
+      <p class="feat-desc">Tratamiento estético no invasivo que utiliza ondas sonoras de alta frecuencia. Estimula el colágeno, tensa los tejidos, mejora la circulación y facilita la absorción. ¡Efecto lifting que rejuvenece!</p>
+      <ul class="inc-list feat-inc">
+        <li>Limpieza profunda</li>
+        <li>Hifu</li>
+        <li>Máscara descongestiva</li>
+        <li>Máscara de vitaminas</li>
+        <li>Protección UVA / UVB</li>
+        <li>Tips de cuidados</li>
+      </ul>
+      <a href="https://wa.me/5493875046855?text=Quiero%20info%20sobre%20Hifu%20Lift%20Firm%20Élite" target="_blank" class="btn btn-gold">Reservar Hifu ✨</a>
+    </div>
   </div>
 </section>
 
@@ -468,22 +625,28 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
   </div>
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <!-- Each item uses CSS bg with gradient fallback -->
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg')"><div class="m-cap">Evento de Moda &amp; Estética ✨</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg');background-color:#3A9A92"><div class="m-cap">Limpieza Facial Premium</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg');background-color:#7B30A8"><div class="m-cap">Clienta feliz 💜</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg');background-color:#C8A26A"><div class="m-cap">Taller Kids 🌈</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg');background-color:#3A9A92"><div class="m-cap">Certificación de Manicuría 🎓</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg');background-color:#2D7A75"><div class="m-cap">Tratamiento Corporal</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/566346013_17946406977049476_3722200288206379346_n.jpg');background-color:#7B30A8"><div class="m-cap">Comunidad &amp; Conciencia 💚</div></div>
+      <!-- imágenes locales - loop seamless -->
+      <div class="m-item" style="background-image:url('img/ig_08.jpg')"><div class="m-cap">Tratamiento facial ✨</div></div>
+      <div class="m-item" style="background-image:url('img/ig_10.jpg')"><div class="m-cap">Limpieza Facial Premium</div></div>
+      <div class="m-item" style="background-image:url('img/ig_12.jpg')"><div class="m-cap">Clienta feliz 💜</div></div>
+      <div class="m-item" style="background-image:url('img/ig_14.jpg')"><div class="m-cap">Taller Kids 🌈</div></div>
+      <div class="m-item" style="background-image:url('img/ig_16.jpg')"><div class="m-cap">Certificación Manicuría 🎓</div></div>
+      <div class="m-item" style="background-image:url('img/ig_18.jpg')"><div class="m-cap">Tratamiento Corporal</div></div>
+      <div class="m-item" style="background-image:url('img/ig_20.jpg')"><div class="m-cap">Cuidado profesional 💚</div></div>
+      <div class="m-item" style="background-image:url('img/ig_22.jpg')"><div class="m-cap">Masaje Kaōlif ✦</div></div>
+      <div class="m-item" style="background-image:url('img/ig_24.jpg')"><div class="m-cap">Hydra Luxe 💧</div></div>
+      <div class="m-item" style="background-image:url('img/ig_26.jpg')"><div class="m-cap">Hifu Lift Élite ⭐</div></div>
       <!-- duplicate for seamless loop -->
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg')"><div class="m-cap">Evento de Moda &amp; Estética ✨</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/701480061_17970445572049476_341144905328831576_n.jpg');background-color:#3A9A92"><div class="m-cap">Limpieza Facial Premium</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg');background-color:#7B30A8"><div class="m-cap">Clienta feliz 💜</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg');background-color:#C8A26A"><div class="m-cap">Taller Kids 🌈</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg');background-color:#3A9A92"><div class="m-cap">Certificación de Manicuría 🎓</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/572911149_17947831239049476_4529453126079078831_n.jpg');background-color:#2D7A75"><div class="m-cap">Tratamiento Corporal</div></div>
-      <div class="m-item" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/566346013_17946406977049476_3722200288206379346_n.jpg');background-color:#7B30A8"><div class="m-cap">Comunidad &amp; Conciencia 💚</div></div>
+      <div class="m-item" style="background-image:url('img/ig_08.jpg')"><div class="m-cap">Tratamiento facial ✨</div></div>
+      <div class="m-item" style="background-image:url('img/ig_10.jpg')"><div class="m-cap">Limpieza Facial Premium</div></div>
+      <div class="m-item" style="background-image:url('img/ig_12.jpg')"><div class="m-cap">Clienta feliz 💜</div></div>
+      <div class="m-item" style="background-image:url('img/ig_14.jpg')"><div class="m-cap">Taller Kids 🌈</div></div>
+      <div class="m-item" style="background-image:url('img/ig_16.jpg')"><div class="m-cap">Certificación Manicuría 🎓</div></div>
+      <div class="m-item" style="background-image:url('img/ig_18.jpg')"><div class="m-cap">Tratamiento Corporal</div></div>
+      <div class="m-item" style="background-image:url('img/ig_20.jpg')"><div class="m-cap">Cuidado profesional 💚</div></div>
+      <div class="m-item" style="background-image:url('img/ig_22.jpg')"><div class="m-cap">Masaje Kaōlif ✦</div></div>
+      <div class="m-item" style="background-image:url('img/ig_24.jpg')"><div class="m-cap">Hydra Luxe 💧</div></div>
+      <div class="m-item" style="background-image:url('img/ig_26.jpg')"><div class="m-cap">Hifu Lift Élite ⭐</div></div>
     </div>
   </div>
   <div style="text-align:center;margin-top:3rem" class="rv">
@@ -501,7 +664,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="cursos-grid">
 
     <div class="curso-card rv" d="1">
-      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/589646533_856955726809028_2995231370659631121_n.jpg'),linear-gradient(135deg,#3A9A92,#A8DDD9)"></div>
+      <div class="curso-img" style="background-image:url('img/ig_28.jpg'),linear-gradient(135deg,#3A9A92,#A8DDD9)"></div>
       <div class="curso-bar"></div>
       <div class="curso-body">
         <span class="curso-ico">💅</span>
@@ -513,7 +676,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
     </div>
 
     <div class="curso-card rv" d="2">
-      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,#C8A26A,#7B30A8)"></div>
+      <div class="curso-img" style="background-image:url('img/ig_30.jpg'),linear-gradient(135deg,#C8A26A,#7B30A8)"></div>
       <div class="curso-bar"></div>
       <div class="curso-body">
         <span class="curso-ico">🌈</span>
@@ -525,7 +688,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
     </div>
 
     <div class="curso-card rv" d="3">
-      <div class="curso-img" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.2885-15/465833764_17905982898049476_7883929932692309070_n.jpg'),linear-gradient(135deg,#7B30A8,#2D7A75)"></div>
+      <div class="curso-img" style="background-image:url('img/ig_32.jpg'),linear-gradient(135deg,#7B30A8,#2D7A75)"></div>
       <div class="curso-bar"></div>
       <div class="curso-body">
         <span class="curso-ico">✨</span>
@@ -536,6 +699,29 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- BEAUTY TIPS -->
+<section id="tips">
+  <div class="tips-head rv">
+    <div class="kicker" style="justify-content:center;margin-bottom:.8rem">Cuidado en casa</div>
+    <h2 class="h2" style="text-align:center">Beauty <em>Tips</em></h2>
+    <p class="sub ctr" style="margin-top:.5rem">Pequeños hábitos que hacen una gran diferencia en tu piel.</p>
+  </div>
+  <div class="tips-grid">
+    <div class="tip rv"><span class="tip-t">Exfoliar la piel</span><span class="tip-d">1 vez por semana.</span></div>
+    <div class="tip rv"><span class="tip-t">Hidratar la piel</span><span class="tip-d">De día y de noche.</span></div>
+    <div class="tip rv"><span class="tip-t">Automasaje facial</span><span class="tip-d">Con crema humectante.</span></div>
+    <div class="tip rv"><span class="tip-t">Dormir mínimo</span><span class="tip-d">8 horas.</span></div>
+    <div class="tip rv"><span class="tip-t">Beber agua</span><span class="tip-d">8 vasos diarios.</span></div>
+    <div class="tip rv"><span class="tip-t">Agua micelar</span><span class="tip-d">No aplicar diariamente.</span></div>
+    <div class="tip rv"><span class="tip-t">Lavado con agua helada</span><span class="tip-d">Hacerlo con cubitos de hielo 20s.</span></div>
+    <div class="tip rv"><span class="tip-t">Lesiones</span><span class="tip-d">¡No apretarlas!</span></div>
+    <div class="tip rv"><span class="tip-t">Baño diario</span><span class="tip-d">No hacerlo con agua muy caliente.</span></div>
+    <div class="tip rv"><span class="tip-t">Evitar</span><span class="tip-d">Fritos, aderezos y chocolates.</span></div>
+    <div class="tip rv"><span class="tip-t">Protegé tu piel del sol</span><span class="tip-d">Usá siempre protector solar.</span></div>
+    <div class="tip rv"><span class="tip-t">Almohada</span><span class="tip-d">Lavar la funda con jabón blanco a mano.</span></div>
   </div>
 </section>
 
@@ -564,7 +750,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
       <div class="tcard-stars">★★★★★</div>
       <p class="tcard-q">Hice la limpieza facial premium y quedé increíble. Rosario es muy profesional y se nota que ama lo que hace. Mi piel quedó renovada y luminosa.</p>
       <div class="tcard-author">
-        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/701681190_1328618555875512_3891653846404022450_n.jpg'),linear-gradient(135deg,var(--teal),var(--teal-d))"></div>
+        <div class="t-avatar" style="background-image:url('img/ig_34.jpg'),linear-gradient(135deg,var(--teal),var(--teal-d))"></div>
         <div><div class="t-name">Anahí</div><div class="t-svc">Limpieza Facial Premium</div></div>
       </div>
     </div>
@@ -572,7 +758,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
       <div class="tcard-stars">★★★★★</div>
       <p class="tcard-q">El Taller Kids fue una experiencia mágica para mi hija. Aprendió un montón, desfiló con mucho estilo y se fue con su certificado. ¡Repetimos sin dudarlo!</p>
       <div class="tcard-author">
-        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.82787-15/621587716_17956892610049476_7156235574939248680_n.jpg'),linear-gradient(135deg,var(--gold),var(--gold-d))"></div>
+        <div class="t-avatar" style="background-image:url('img/ig_36.jpg'),linear-gradient(135deg,var(--gold),var(--gold-d))"></div>
         <div><div class="t-name">Ampi, mamá de Martina</div><div class="t-svc">Taller Kids</div></div>
       </div>
     </div>
@@ -580,7 +766,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
       <div class="tcard-stars">★★★★★</div>
       <p class="tcard-q">Empecé con el tratamiento corporal y los resultados me sorprendieron desde las primeras sesiones. Se nota el profesionalismo y la dedicación en cada detalle.</p>
       <div class="tcard-author">
-        <div class="t-avatar" style="background-image:url('https://instagram.fsla1-1.fna.fbcdn.net/v/t51.71878-15/653485664_1559439855354530_6962803754623064622_n.jpg'),linear-gradient(135deg,var(--violet),var(--teal-d))"></div>
+        <div class="t-avatar" style="background-image:url('img/ig_38.jpg'),linear-gradient(135deg,var(--violet),var(--teal-d))"></div>
         <div><div class="t-name">Valentina R.</div><div class="t-svc">Tratamiento Corporal Reductor</div></div>
       </div>
     </div>
