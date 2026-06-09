@@ -24,6 +24,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-s);background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:none}
+@media(pointer:coarse){body{cursor:auto}#cur,#cur-r{display:none!important}}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 
@@ -34,9 +35,9 @@ ul{list-style:none}
 /* ── LOADER ── */
 #loader{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9000;transition:opacity .7s,visibility .7s}
 #loader.done{opacity:0;visibility:hidden}
-.l-brand{font-family:var(--font-b);font-size:4.5rem;color:var(--ink);opacity:0;animation:fadeIn .9s var(--ease) .3s forwards}
+.l-brand{font-family:var(--font-b);font-size:4.5rem;color:var(--ink);opacity:0;animation:fadeIn .3s var(--ease) .05s forwards}
 .l-line{width:140px;height:1px;background:rgba(0,0,0,.1);overflow:hidden;margin-top:1.2rem}
-.l-prog{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;animation:loadProg 1.6s var(--ease) .5s forwards}
+.l-prog{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;animation:loadProg .6s var(--ease) .1s forwards}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes loadProg{to{width:100%}}
 
@@ -71,15 +72,15 @@ nav.solid .ham span{background:var(--ink)}
 /* ── HERO ── */
 #hero{min-height:100vh;display:grid;grid-template-columns:52% 48%;position:relative;overflow:hidden}
 .hero-l{background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:10rem 5rem 6rem 7rem;position:relative;z-index:2}
-.hero-pre{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-d);margin-bottom:1.5rem;opacity:0;animation:slideUp .7s var(--ease) 1.4s forwards}
+.hero-pre{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-d);margin-bottom:1.5rem;opacity:0;animation:slideUp .7s var(--ease) .9s forwards}
 .hero-pre::before{content:'';display:block;width:28px;height:1px;background:var(--teal)}
-.hero-brand{font-family:var(--font-b);font-size:clamp(5rem,8vw,8.5rem);line-height:.95;color:var(--ink);margin-bottom:1.4rem;opacity:0;animation:slideUp .8s var(--ease) 1.6s forwards}
-.hero-tag{font-family:var(--font-h);font-size:clamp(1.05rem,1.8vw,1.5rem);font-weight:300;font-style:italic;color:var(--mid);line-height:1.6;margin-bottom:2.5rem;opacity:0;animation:slideUp .7s var(--ease) 1.8s forwards}
+.hero-brand{font-family:var(--font-b);font-size:clamp(5rem,8vw,8.5rem);line-height:.95;color:var(--ink);margin-bottom:1.4rem;opacity:0;animation:slideUp .8s var(--ease) 1s forwards}
+.hero-tag{font-family:var(--font-h);font-size:clamp(1.05rem,1.8vw,1.5rem);font-weight:300;font-style:italic;color:var(--mid);line-height:1.6;margin-bottom:2.5rem;opacity:0;animation:slideUp .7s var(--ease) 1.15s forwards}
 .hero-tag strong{font-style:normal;font-weight:600;color:var(--ink)}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:slideUp .7s var(--ease) 2s forwards}
-.hero-scroll{margin-top:4rem;display:flex;align-items:center;gap:.75rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light);opacity:0;animation:slideUp .7s var(--ease) 2.2s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:slideUp .7s var(--ease) 1.3s forwards}
+.hero-scroll{margin-top:4rem;display:flex;align-items:center;gap:.75rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light);opacity:0;animation:slideUp .7s var(--ease) 1.5s forwards}
 .scroll-ln{width:40px;height:1px;background:var(--light);position:relative;overflow:hidden}
-.scroll-ln::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--teal);animation:scrollFlow 2s var(--ease) 2.5s infinite}
+.scroll-ln::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--teal);animation:scrollFlow 2s var(--ease) 1.7s infinite}
 @keyframes scrollFlow{0%{left:-100%}50%{left:0}100%{left:100%}}
 
 .hero-r{position:relative;overflow:hidden}
@@ -89,7 +90,7 @@ nav.solid .ham span{background:var(--ink)}
   background-image:url('logo.png'),linear-gradient(135deg,var(--teal-d),#2D7A75 40%,var(--violet));
   background-size:cover;background-position:center top;
   clip-path:inset(0 100% 0 0);
-  animation:revealR .9s var(--ease-out) 1.2s forwards;
+  animation:revealR .9s var(--ease-out) .7s forwards;
   transition:transform .1s linear;
 }
 /* Artistic overlay on hero photo */
@@ -100,7 +101,7 @@ nav.solid .ham span{background:var(--ink)}
 .hero-ring::after{content:'';position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(79,189,179,.15)}
 @keyframes ringPulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.04)}}
 
-.hero-badge{position:absolute;bottom:2.5rem;left:-1.5rem;z-index:4;background:var(--white);border-radius:16px;padding:1rem 1.5rem 1rem 1rem;box-shadow:0 12px 40px rgba(0,0,0,.12);display:flex;align-items:center;gap:.9rem;opacity:0;animation:badgeIn .6s var(--ease) 2.4s forwards;max-width:220px}
+.hero-badge{position:absolute;bottom:2.5rem;left:-1.5rem;z-index:4;background:var(--white);border-radius:16px;padding:1rem 1.5rem 1rem 1rem;box-shadow:0 12px 40px rgba(0,0,0,.12);display:flex;align-items:center;gap:.9rem;opacity:0;animation:badgeIn .6s var(--ease) 1.6s forwards;max-width:220px}
 @keyframes badgeIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 .badge-logo-img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;box-shadow:0 0 12px rgba(200,162,106,.3)}
 .badge-l1{font-family:var(--font-b);font-size:1.3rem;color:var(--ink);line-height:1}
@@ -121,6 +122,13 @@ nav.solid .ham span{background:var(--ink)}
 .stat-b:hover{background:rgba(79,189,179,.08)}
 .stat-n{display:block;font-family:var(--font-h);font-size:3.5rem;font-weight:300;color:var(--teal-l);line-height:1;margin-bottom:.35rem}
 .stat-l{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* ── AUTHORITY BANNER ── */
+.auth-banner{background:var(--teal-pale);padding:1.1rem 2rem;text-align:center;border-bottom:1px solid rgba(79,189,179,.15)}
+.auth-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem .8rem}
+.auth-chip{font-size:.76rem;font-weight:600;letter-spacing:.05em;color:var(--teal-d)}
+.auth-sep{color:var(--teal-l);font-weight:300}
+@media(max-width:640px){.auth-sep{display:none}.auth-inner{gap:.4rem}.auth-chip{font-size:.7rem;background:var(--white);padding:.3rem .7rem;border-radius:20px}}
 
 /* ── SHARED ── */
 section{padding:7rem 4rem}
@@ -411,7 +419,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
     <li><a href="#cursos">Cursos</a></li>
     <li><a href="#tips">Beauty Tips</a></li>
     <li><a href="#contacto">Contacto</a></li>
-    <li><a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="nav-cta">Reservar ✨</a></li>
+    <li><a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20consultar%20por%20un%20turno" target="_blank" class="nav-cta">Consultá gratis ✨</a></li>
   </ul>
   <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
@@ -421,7 +429,7 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="hero-l">
     <div class="hero-pre">Estética &amp; Spa · Salta, Argentina</div>
     <h1 class="hero-brand">Las Violetas</h1>
-    <p class="hero-tag"><strong>Lucí radiante con Estilo.</strong><br>Tratamientos pensados para que te sientas increíble — por dentro y por fuera.</p>
+    <p class="hero-tag"><strong>La cosmiatra que fue Jurado en Miss Mundo — ahora en Salta.</strong><br>Tratamientos faciales y corporales con quien brilló en la TV y los certámenes internacionales.</p>
     <div class="hero-btns">
       <a href="https://wa.me/5493875046855?text=Hola!%20Quiero%20reservar%20un%20turno" target="_blank" class="btn btn-gold">Reservar turno</a>
       <a href="#servicios" class="btn btn-dk">Ver servicios</a>
@@ -440,9 +448,22 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat-b"><span class="stat-n" data-count="200">0</span><span class="stat-l">Clientas satisfechas</span></div>
-  <div class="stat-b"><span class="stat-n" data-count="5">0</span><span class="stat-l">Años de experiencia</span></div>
-  <div class="stat-b"><span class="stat-n" data-count="10">0</span><span class="stat-l">Tratamientos disponibles</span></div>
+  <div class="stat-b"><span class="stat-n" data-count="200">0</span><span class="stat-l">Clientas que volvieron</span></div>
+  <div class="stat-b"><span class="stat-n" data-count="7">0</span><span class="stat-l">Certificaciones profesionales</span></div>
+  <div class="stat-b"><span class="stat-n" style="font-size:2.2rem">🏆</span><span class="stat-l">Jurado Miss Mundo 2025</span></div>
+</div>
+
+<!-- AUTHORITY BANNER -->
+<div class="auth-banner rv">
+  <div class="auth-inner">
+    <span class="auth-chip">✓ Dermatocosmiatra Hospitalaria</span>
+    <span class="auth-sep">·</span>
+    <span class="auth-chip">✓ Jurado Miss Mundo 2025</span>
+    <span class="auth-sep">·</span>
+    <span class="auth-chip">✓ TV — Dosis Diaria</span>
+    <span class="auth-sep">·</span>
+    <span class="auth-chip">✓ Gala Rosa 2025</span>
+  </div>
 </div>
 
 <!-- TRATAMIENTOS -->
@@ -578,6 +599,13 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
       </div>
     </div>
 
+  </div>
+
+  <!-- ¿NO SABÉS CUÁL ELEGIR? -->
+  <div class="help-cta rv" style="max-width:680px;margin:2.5rem auto 0;background:linear-gradient(135deg,var(--teal-pale),var(--gold-pale));border-radius:20px;padding:2rem 2.5rem;text-align:center">
+    <p style="font-family:var(--font-h);font-size:1.35rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">¿No sabés cuál es para vos?</p>
+    <p style="font-size:.88rem;font-weight:300;color:var(--mid);margin-bottom:1.2rem;line-height:1.6">Escribile a Rosario, te asesora gratis y te recomienda el tratamiento ideal para tu piel.</p>
+    <a href="https://wa.me/5493875046855?text=Hola%20Rosario!%20No%20sé%20qué%20tratamiento%20facial%20me%20conviene,%20me%20ayudás?" target="_blank" class="btn btn-teal">💬 Consultá gratis por WhatsApp</a>
   </div>
 
   <!-- TRATAMIENTO ESTRELLA -->
@@ -899,7 +927,7 @@ document.querySelectorAll('a,button,.btn').forEach(el=>{
 });
 
 /* ── LOADER ── */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),1900));
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),800));
 
 /* ── NAV ── */
 const nav=document.getElementById('nav');
