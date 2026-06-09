@@ -349,9 +349,22 @@ section{padding:7rem 4rem}
 .ci-vl a{color:var(--teal-d);transition:color .2s}
 .ci-vl a:hover{color:var(--gold)}
 .soc-row{display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap}
+.map-wrap{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);opacity:0;transform:translateY(30px) scale(.97);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.map-wrap.on{opacity:1;transform:translateY(0) scale(1)}
+.map-wrap::before{content:'';position:absolute;inset:-2px;border-radius:26px;background:linear-gradient(135deg,var(--teal),var(--gold),var(--violet),var(--teal));background-size:300% 300%;animation:mapBorderGlow 6s ease infinite;z-index:1;pointer-events:none}
+@keyframes mapBorderGlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.map-wrap iframe{display:block;width:100%;height:100%;border:0;position:relative;z-index:2;border-radius:22px}
+.map-inner{position:relative;width:100%;height:360px;border-radius:22px;overflow:hidden}
+@media(max-width:900px){.map-inner{height:280px}}
+.map-overlay{position:absolute;bottom:0;left:0;right:0;z-index:3;background:linear-gradient(to top,rgba(44,32,37,.92) 0%,rgba(44,32,37,.6) 50%,transparent 100%);padding:2rem 1.5rem 1.5rem;pointer-events:none}
+.map-overlay-brand{font-family:var(--font-b);font-size:1.6rem;color:var(--white);margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.map-overlay-brand::before{content:'📍';font-family:initial;animation:pinBounce 2.5s ease-in-out infinite}
+@keyframes pinBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.map-overlay-addr{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.6}
+.map-overlay-btn{pointer-events:all;margin-top:.8rem;display:inline-flex}
+
 .map-box{background:var(--ink);border-radius:24px;padding:3rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.1rem}
 .map-pin{font-size:3rem;margin-bottom:1rem;animation:pinBounce 2.5s ease-in-out infinite}
-@keyframes pinBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .map-biz{font-family:var(--font-h);font-size:1.25rem;color:var(--white);margin-bottom:.6rem}
 .map-addr{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:2rem}
 
@@ -851,11 +864,15 @@ footer{background:#18101A;padding:2.5rem 4rem;display:flex;align-items:center;ju
         <a href="https://www.instagram.com/lasvioletas.estetica" target="_blank" class="btn btn-ig btn-sm">📸 Instagram</a>
       </div>
     </div>
-    <div class="map-box rv-r">
-      <div class="map-pin">📍</div>
-      <div class="map-biz">Las Violetas Estética &amp; Spa</div>
-      <div class="map-addr">Buenos Aires 135, Of. 301<br>Edificio Palermo<br>Salta Capital, Argentina</div>
-      <a href="https://maps.google.com/?q=Buenos+Aires+135,+Salta,+Argentina" target="_blank" class="btn btn-teal">🗺️ Ver en Google Maps</a>
+    <div class="map-wrap rv-r">
+      <div class="map-inner">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.!2d-65.4117!3d-24.7883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zQnVlbm9zIEFpcmVzIDEzNSwgU2FsdGE!5e0!3m2!1ses!2sar!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Las Violetas Estética"></iframe>
+        <div class="map-overlay">
+          <div class="map-overlay-brand">Las Violetas</div>
+          <div class="map-overlay-addr">Buenos Aires 135, Of. 301 · Edificio Palermo<br>Salta Capital, Argentina</div>
+          <a href="https://maps.google.com/?q=Buenos+Aires+135,+Salta,+Argentina" target="_blank" class="btn btn-teal btn-sm map-overlay-btn">🗺️ Abrir en Google Maps</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -898,7 +915,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* ── REVEAL ── */
 const robs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');robs.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>robs.observe(el));
+document.querySelectorAll('.rv,.rv-l,.rv-r,.map-wrap').forEach(el=>robs.observe(el));
 
 /* ── COUNTER ── */
 function countUp(el,target){
